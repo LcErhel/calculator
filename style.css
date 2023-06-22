@@ -1,0 +1,15 @@
+.number {
+    background-color: aliceblue;
+    display: inline-flex;
+    padding: 1em;
+    border: 2px solid red;
+    margin: 4px;
+}
+
+.operator {
+    background-color: aliceblue;
+    display: inline-flex;
+    padding: 1em;      
+    border: 2px solid red;
+    margin: 4px;
+}
