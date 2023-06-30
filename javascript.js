@@ -1,5 +1,20 @@
 "use strict";
 
+let decimal = document.querySelector("#float");
+decimal.addEventListener("click", () => {
+    if (block == true) {
+        return;
+    }
+    let chars = input.innerHTML.split("");
+    for (let char of chars) {
+        if (char == ".") {
+            block = true;
+            return;
+        }
+    }
+    input.textContent += ".";
+});
+
 let equal = document.querySelector(".rightPanel");
 equal.addEventListener("click", () => {
     if (aOperand == null && input.textContent == "") {
@@ -34,7 +49,7 @@ let numbers = document.getElementsByClassName("number");
 
 for (let number of numbers) {
     number.addEventListener("click", () => {
-        if (input.textContent == "Infinity" || input.textContent == "rip") {
+        if (input.textContent == "Infinity" || input.textContent == "NaN" || input.textContent == "rip") {
             input.textContent = "";
         }
         input.innerHTML += number.textContent;
@@ -61,7 +76,7 @@ for(let operator of operators) {
 let aOperand = null;
 let bOperand = null;
 let oper = null;
-let floatBlocked = false;
+let block = false;
 
 function operate(a, b = 0, op = "+") {
     let result;
@@ -85,7 +100,7 @@ function refresh(a) {
     input.innerHTML = a;
     bOperand = null;
     oper = null;
-    floatBlocked = false;
+    block = false;
 }
 
 function clear () {
@@ -93,7 +108,7 @@ function clear () {
     bOperand = null;
     oper = null;
     input.textContent = "";
-    floatBlocked = false;
+    block = false;
 }
 
 //
