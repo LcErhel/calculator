@@ -1,28 +1,70 @@
 "use strict";
 
-
+let input = document.querySelector(".input");
 
 //
 
-let firstOperand = 12;
-let secondOperand = 4;
-let operator = "/";
+let numbers = document.getElementsByClassName("number");
 
-function operate(a, b, op) {
-    if (op == "+") {
-        return add(a, b);
-    } else if (op == "-") {
-        return subtract(a, b);
-    } else if (op == "*") {
-        return multiply(a, b);
-    } else if (op == "/") {
-        return divide(a, b);
-    } else {
-        return console.log("operate broken");
-    }
+for (let number of numbers) {
+    number.addEventListener("click", () => {
+        input.innerHTML += number.textContent;
+    });
 }
 
-console.log(operate(firstOperand, secondOperand, operator));
+//
+
+let operators = document.getElementsByClassName("operator");
+
+for(let operator of operators) {
+    operator.addEventListener("click", () => {
+        if (oper !== null) {
+            bOperand = Number(input.textContent);
+            return operate(aOperand, bOperand, oper); 
+        }
+        aOperand = Number(input.textContent);
+        input.textContent = "";
+        oper = operator.textContent;
+    });
+}
+
+//
+
+let aOperand = null;
+let bOperand = null;
+let oper = null;
+
+function operate(a, b, op) {
+    let result;
+    if (op == "+") {
+        result = add(a, b);
+    } else if (op == "-") {
+        result = subtract(a, b);
+    } else if (op == "*") {
+        result = multiply(a, b);
+    } else if (op == "/") {
+        result = divide(a, b);
+    } else {
+        result = null;
+        return console.log("operate broken");
+    }
+    aOperand = result;
+    refresh();
+    input.innerHTML = result;
+    return result;
+}
+
+function refresh() {
+    bOperand = null;
+    oper = null;
+}
+
+function clear () {
+    aOperand = null;
+    bOperand = null;
+    oper = null;
+    input.textContent = "";
+}
 
 //
 
