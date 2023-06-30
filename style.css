@@ -1,15 +1,19 @@
-.number {
+.bodyWrap {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+    margin: 50px auto;
+}
+
+.panelWrap {
+    display: flex;
+}
+
+.number, .operator, .rightPanel, .input {
     background-color: aliceblue;
     display: inline-flex;
     padding: 1em;
-    border: 2px solid red;
-    margin: 4px;
-}
-
-.operator {
-    background-color: aliceblue;
-    display: inline-flex;
-    padding: 1em;      
     border: 2px solid red;
     margin: 4px;
 }
