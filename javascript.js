@@ -1,5 +1,10 @@
 "use strict";
 
+let clearBtn = document.querySelector("#clear")
+clearBtn.addEventListener("click", () => {
+    clear();
+});
+
 let input = document.querySelector(".input");
 
 //
