@@ -1,5 +1,26 @@
 "use strict";
 
+let equal = document.querySelector(".rightPanel");
+equal.addEventListener("click", () => {
+    if (aOperand == null && input.textContent == "") {
+        return;
+    } else if (aOperand !== null && input.textContent !== "") {
+        bOperand = Number(input.textContent);
+    } else if (aOperand !== null && bOperand == null) {
+        operate(aOperand)
+    } else {
+        return;
+    }
+
+    if (bOperand == 0 && oper == "/") {
+        console.log(aOperand, bOperand, oper);
+        clear();
+        input.textContent = "rip";
+    }
+
+    operate(aOperand, bOperand, oper);
+});
+
 let clearBtn = document.querySelector("#clear")
 clearBtn.addEventListener("click", () => {
     clear();
@@ -13,6 +34,9 @@ let numbers = document.getElementsByClassName("number");
 
 for (let number of numbers) {
     number.addEventListener("click", () => {
+        if (input.textContent == "Infinity" || input.textContent == "rip") {
+            input.textContent = "";
+        }
         input.innerHTML += number.textContent;
     });
 }
@@ -24,8 +48,7 @@ let operators = document.getElementsByClassName("operator");
 for(let operator of operators) {
     operator.addEventListener("click", () => {
         if (oper !== null) {
-            bOperand = Number(input.textContent);
-            return operate(aOperand, bOperand, oper); 
+            return;
         }
         aOperand = Number(input.textContent);
         input.textContent = "";
@@ -38,8 +61,9 @@ for(let operator of operators) {
 let aOperand = null;
 let bOperand = null;
 let oper = null;
+let floatBlocked = false;
 
-function operate(a, b, op) {
+function operate(a, b = 0, op = "+") {
     let result;
     if (op == "+") {
         result = add(a, b);
@@ -53,15 +77,15 @@ function operate(a, b, op) {
         result = null;
         return console.log("operate broken");
     }
-    aOperand = result;
-    refresh();
-    input.innerHTML = result;
-    return result;
+    return refresh(Math.round(result*100)/100);
 }
 
-function refresh() {
+function refresh(a) {
+    aOperand = a;
+    input.innerHTML = a;
     bOperand = null;
     oper = null;
+    floatBlocked = false;
 }
 
 function clear () {
@@ -69,6 +93,7 @@ function clear () {
     bOperand = null;
     oper = null;
     input.textContent = "";
+    floatBlocked = false;
 }
 
 //

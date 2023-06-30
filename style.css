@@ -1,9 +1,16 @@
+* {
+    text-align: center;
+}
+
 .bodyWrap {
     display: flex;
     flex-direction: column;
-    height: 600px;
-    width: 400px;
+    max-height: 600px;
+    max-width: 400px;
     margin: 50px auto;
+    border: 2px solid rgb(160, 226, 60);
+    padding: 0.3em
+
 }
 
 .operators {
@@ -18,17 +25,29 @@
     display: flex;
 }
 
+.rightPanel {
+    flex: 185;
+}
+
+.leftPanel {
+    flex: 1000;
+}
+
 .row {
     display: flex;
 }
 
-.number {
+.number, .secondaryFunction {
     flex: 1;
 }
 
 .number, .operator, .rightPanel, .input, .secondaryFunction {
-    background-color: aliceblue;
+    background-color: rgb(241, 248, 253);
     padding: 1em;
-    border: 2px solid red;
+    border: 2px solid rgb(160, 226, 60);
     margin: 4px;
+}
+
+.operator {
+    background-color: greenyellow;
 }
