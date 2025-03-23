@@ -1,5 +1,25 @@
 "use strict";
 
+let num1 = 32;
+let num2 = 13;
+let operator = "add";
+
+function operate(a, b, op) {
+    switch (op) {
+        case "add":
+            return add(a, b);
+        case "subtract":
+            return subtract(a, b);
+        case "multiply":
+            return multiply(a, b);
+        case "divide":
+            return divide(a, b);
+        default:
+            console.log("operate() failed");
+            break;
+    }
+}
+
 function add(a, b) {
     return a + b;
 }
