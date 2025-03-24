@@ -11,7 +11,25 @@
     align-items: center;
 }
 
-.case {
+.buttons {
+    display: flex;
+}
+
+.digits {
+    display: flex;
+    flex-direction: column;
+}
+
+.dRow {
+    display: flex;
+}
+
+.operators {
+    display:flex;
+    flex-direction: column-reverse;
+}
+
+.digitCSS {
     padding: 16px 24px;
     border: 2px solid black;
 }

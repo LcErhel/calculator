@@ -3,14 +3,24 @@
 let num1 = 32;
 let num2 = 13;
 let operator = "add";
+
 let cases = document.querySelectorAll(".case");
+console.log(cases);
 cases.forEach(element => {
     element.addEventListener("click", () => {
         operator = element.id;
         console.log(operator);
     });
 });
-console.log(cases);
+
+let digits = document.querySelectorAll(".digit");
+digits.forEach(element => {
+    element.addEventListener("click", () => {
+        operator = element.id;
+        console.log(operator);
+    });
+});
+console.log(digits);
 
 function operate(a, b, op) {
     switch (op) {
