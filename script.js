@@ -108,13 +108,21 @@ function getSecondNumber(element) {
 }
 
 function evaluate() {
+    if(num2 == 0) {
+        return;
+    }
     num1 = operate(+num1, +num2, operator);
     num2 = 0;
     if(num1 === Infinity) {
         num1 = 0;
     }
+
+    if(!isInt(num1)) {
+        num1 = num1.toFixed(1);
+        console.log("check");
+    }
+    console.log(num1);
     display.textContent = num1;
-    console.log("check");
 }
 
 function reset() {
@@ -122,4 +130,8 @@ function reset() {
     num1 = 0;
     num2 = 0;
     refreshNumberDisplay();
+}
+
+function isInt(n) {
+    return n % 1 === 0;
 }
