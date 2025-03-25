@@ -43,3 +43,8 @@
 div {
     background-color: sandybrown;
 }
+
+.reset, .clear {
+    padding: 16px 16px;
+    border: 2px solid black;
+}

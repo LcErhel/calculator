@@ -5,16 +5,24 @@ let num1 = 0;
 let num2 = 0;
 let operator = "add";
 let display = document.querySelector(".numbersDisplay");
-let evaluate = document.querySelector("#eval");
+let evaluateBtn = document.querySelector("#eval");
 let showOperator = document.querySelector(".showOperator");
 
+let resetBtn = document.querySelector(".reset");
+resetBtn.addEventListener("click", reset);
+
 let cases = document.querySelectorAll(".case");
-console.log(cases);
 cases.forEach(element => {
     element.addEventListener("click", () => {
+        if(onFirstNum == false && num2 !== 0) {
+            evaluate();
+            operator = element.id;
+            refreshNumberDisplay();
+            return;
+        }
         operator = element.id;
         onFirstNum = false;
-        refreshOperatorDisplay()
+        refreshNumberDisplay();
         console.log(operator);
     });
 });
@@ -30,7 +38,9 @@ digits.forEach(element => {
         }
     });
 });
-console.log(digits);
+// console.log(digits);
+
+evaluateBtn.addEventListener("click", evaluate);
 
 function operate(a, b, op) {
     switch (op) {
@@ -46,15 +56,7 @@ function operate(a, b, op) {
             console.log("operate() failed");
             break;
     }
-
 }
-
-evaluate.addEventListener("click", () => {
-    num1 = operate(+num1, +num2, operator);
-    num2 = 0;
-    display.textContent = num1;
-    console.log("check");
-});
 
 function add(a, b) {
     return a + b;
@@ -72,16 +74,52 @@ function divide(a, b) {
     return a / b;
 }
 
-function refreshOperatorDisplay() {
-    showOperator.textContent = operator;
+function refreshNumberDisplay() {
+    if(onFirstNum) {
+        display.textContent = num1;
+    } else {
+        refreshOperatorDisplay(operator);
+        display.textContent = `${num1} ${showOperator.textContent} ${num2}`;
+    }
+}
+
+function refreshOperatorDisplay(op) {
+    if(op == "add") {
+        showOperator.textContent = "+";
+    } else if(op == "subtract") {
+        showOperator.textContent = "-";
+    } else if(op == "multiply") {
+        showOperator.textContent = "*"
+    } else if(op == "divide") {
+        showOperator.textContent = "/"
+    } else {
+        console.log("refreshOperatorDisplay failed")
+    }
 }
 
 function getFirstNumber(element) {
     num1 == 0 ? num1 = element.id : num1 += element.id;
-    display.textContent = num1;
+    refreshNumberDisplay();
 }
 
 function getSecondNumber(element) {
     num2 == 0 ? num2 = element.id : num2 += element.id;
-    display.textContent = `${num1} || ${num2}`;
+    refreshNumberDisplay();
+}
+
+function evaluate() {
+    num1 = operate(+num1, +num2, operator);
+    num2 = 0;
+    if(num1 === Infinity) {
+        num1 = 0;
+    }
+    display.textContent = num1;
+    console.log("check");
+}
+
+function reset() {
+    onFirstNum = true;
+    num1 = 0;
+    num2 = 0;
+    refreshNumberDisplay();
 }
