@@ -28,6 +28,7 @@
 
 .dRow {
     display: flex;
+    justify-content: end;
 }
 
 .operators {

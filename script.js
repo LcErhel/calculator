@@ -23,14 +23,12 @@ cases.forEach(element => {
         operator = element.id;
         onFirstNum = false;
         refreshNumberDisplay();
-        console.log(operator);
     });
 });
 
 let digits = document.querySelectorAll(".digit");
 digits.forEach(element => {
     element.addEventListener("click", () => {
-        // num1 == 0 ? num1 = element.id : num1 += element.id;
         if(onFirstNum) {
             getFirstNumber(element);
         } else {
@@ -38,7 +36,6 @@ digits.forEach(element => {
         }
     });
 });
-// console.log(digits);
 
 evaluateBtn.addEventListener("click", evaluate);
 
@@ -53,7 +50,7 @@ function operate(a, b, op) {
         case "divide":
             return divide(a, b);
         default:
-            console.log("operate() failed");
+            alert("operate() failed");
             break;
     }
 }
@@ -93,7 +90,7 @@ function refreshOperatorDisplay(op) {
     } else if(op == "divide") {
         showOperator.textContent = "/"
     } else {
-        console.log("refreshOperatorDisplay failed")
+        alert("refreshOperatorDisplay failed")
     }
 }
 
@@ -119,9 +116,7 @@ function evaluate() {
 
     if(!isInt(num1)) {
         num1 = num1.toFixed(1);
-        console.log("check");
     }
-    console.log(num1);
     display.textContent = num1;
 }
 
